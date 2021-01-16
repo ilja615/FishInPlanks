@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "fish_in_planks:block/barrel_of_pike_top",
+    "bottom": "fish_in_planks:block/barrel_of_pike_bottom",
+    "side": "fish_in_planks:block/barrel_of_pike_side"
+  }
+}

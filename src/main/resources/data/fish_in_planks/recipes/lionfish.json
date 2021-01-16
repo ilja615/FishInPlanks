@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "fish_in_planks:lionfish_barrel"
+    }
+  ],
+  "result": {
+    "item": "upgrade_aquatic:lionfish",
+    "count": 9
+  }
+}

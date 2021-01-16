@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:salmon"
+    }
+  },
+  "result": {
+    "item": "fish_in_planks:salmon_barrel",
+    "count": 1
+  }
+}

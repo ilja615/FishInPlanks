@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "fish_in_planks:cod_barrel"
+    }
+  ],
+  "result": {
+    "item": "minecraft:cod",
+    "count": 9
+  }
+}

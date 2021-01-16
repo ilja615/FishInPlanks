@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:pufferfish"
+    }
+  },
+  "result": {
+    "item": "fish_in_planks:pufferfish_barrel",
+    "count": 1
+  }
+}

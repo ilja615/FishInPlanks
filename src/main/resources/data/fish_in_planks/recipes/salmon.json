@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "fish_in_planks:salmon_barrel"
+    }
+  ],
+  "result": {
+    "item": "minecraft:salmon",
+    "count": 9
+  }
+}
