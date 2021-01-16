@@ -1,12 +1,10 @@
-package mod.ilja615.fish_in_planks;
+package com.github.ilja615.fish_in_planks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FireBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.util.SoundEvents;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,7 +15,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import static mod.ilja615.fish_in_planks.ModMain.MOD_ID;
+import static com.github.ilja615.fish_in_planks.ModMain.MOD_ID;
 
 @Mod(MOD_ID)
 public class ModMain

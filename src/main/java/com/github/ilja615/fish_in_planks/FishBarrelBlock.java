@@ -1,4 +1,4 @@
-package mod.ilja615.fish_in_planks;
+package com.github.ilja615.fish_in_planks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
