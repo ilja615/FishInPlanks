@@ -1,7 +1,7 @@
 modLoader="javafml" #mandatory
 loaderVersion="[32,)" #mandatory
 credits="Idea and textures by edmord, coding by ilja615" #optional
-license="LGPL" #mandatory
+license="GNU LGPLv3" #mandatory
 [[mods]] #mandatory
 modId="fish_in_planks" #mandatory
 version="1.16.5-0.2" #mandatory
