@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "fish_in_planks:blobfish_barrel"
+    }
+  ],
+  "result": {
+    "item": "alexsmobs:blobfish",
+    "count": 9
+  }
+}

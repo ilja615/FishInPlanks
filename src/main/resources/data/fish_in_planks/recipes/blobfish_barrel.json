@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "alexsmobs:blobfish"
+    }
+  },
+  "result": {
+    "item": "fish_in_planks:blobfish_barrel",
+    "count": 1
+  }
+}
