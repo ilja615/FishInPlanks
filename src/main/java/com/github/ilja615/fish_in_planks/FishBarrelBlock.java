@@ -1,6 +1,5 @@
 package com.github.ilja615.fish_in_planks;
 
-import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
@@ -28,6 +27,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.ModList;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -53,19 +53,10 @@ public class FishBarrelBlock extends DirectionalBlock
         BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.SALMON_BARREL.get(), ModParticles.SALMON_PARTICLE.get());
         BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.TROPICAL_FISH_BARREL.get(), ModParticles.TROPICAL_FISH_PARTICLE.get());
         BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.PUFFERFISH_BARREL.get(), ModParticles.PUFFERFISH_PARTICLE.get());
-        if (ModList.get().isLoaded("upgrade_aquatic"))
-        {
-            BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.PIKE_BARREL.get(), ModParticles.PIKE_PARTICLE.get());
-            BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.LIONFISH_BARREL.get(), ModParticles.LIONFISH_PARTICLE.get());
-        }
-        if (ModList.get().isLoaded("environmental"))
-        {
-            BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.KOI_BARREL.get(), ModParticles.KOI_PARTICLE.get());
-        }
-        if (ModList.get().isLoaded("alexsmobs"))
-        {
-            BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.BLOBFISH_BARREL.get(), ModParticles.BLOBFISH_PARTICLE.get());
-        }
+        BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.PIKE_BARREL.get(), ModParticles.PIKE_PARTICLE.get());
+        BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.LIONFISH_BARREL.get(), ModParticles.LIONFISH_PARTICLE.get());
+        BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.KOI_BARREL.get(), ModParticles.KOI_PARTICLE.get());
+        BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.BLOBFISH_BARREL.get(), ModParticles.BLOBFISH_PARTICLE.get());
     }
 
     protected static final VoxelShape FISH_BARREL_EAST_AABB = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 15.0D, 16.0D, 16.0D);
@@ -180,7 +171,7 @@ public class FishBarrelBlock extends DirectionalBlock
     {
         for (int c = 0; c < 3 + world.rand.nextInt(4); c++)
         {
-            world.addParticle(BLOCK_I_PARTICLE_DATA_HASH_MAP.getOrDefault(this, ModParticles.COD_PARTICLE.get()), pos.getX()+0.5d+r(world.rand), pos.getY()+0.5d+r(world.rand), pos.getZ()+0.5d+r(world.rand), 0.0d, 0.2d, 0.0d);
+            world.addParticle(BLOCK_I_PARTICLE_DATA_HASH_MAP.getOrDefault(this, ModParticles.COD_PARTICLE.get()), pos.getX()+0.5d+r(world.rand), pos.getY()+0.5d+r(world.rand), pos.getZ()+0.5d+r(world.rand), 0.0d, 0.1d, 0.0d);
         }
         return super.addDestroyEffects(state, world, pos, manager);
     }
@@ -188,7 +179,7 @@ public class FishBarrelBlock extends DirectionalBlock
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-        if (stateIn.get(FACING) == Direction.DOWN && rand.nextFloat() > 0.8f)
+        if (stateIn.get(FACING) == Direction.DOWN && rand.nextFloat() > 0.9f)
         {
             worldIn.addParticle(BLOCK_I_PARTICLE_DATA_HASH_MAP.getOrDefault(this, ModParticles.COD_PARTICLE.get()), pos.getX()+0.5d+r(rand), pos.getY(), pos.getZ()+0.5d+r(rand), 0.0D, -0.1d, 0.0D);
         }
