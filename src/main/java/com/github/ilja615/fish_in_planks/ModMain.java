@@ -34,6 +34,9 @@ public class ModMain
 {
     public static final String MOD_ID = "fish_in_planks";
     public static final Item.Properties ITEM_PROPERTY = new Item.Properties().group(ItemGroup.BUILDING_BLOCKS);
+    public static final Block.Properties BLOCK_PROPERTY = Block.Properties.from(Blocks.BARREL);
+    public static final Block.Properties RANDOMTICK_BLOCK_PROPERTY = BLOCK_PROPERTY.tickRandomly();
+
     public static ModMain INSTANCE;
 
     public ModMain()
@@ -47,14 +50,14 @@ public class ModMain
         DeferredRegister<Block> blocks = makeRegister(modEventBus, ForgeRegistries.BLOCKS);
         DeferredRegister<Item> items = makeRegister(modEventBus, ForgeRegistries.ITEMS);
 
-        ModBlocks.COD_BARREL = registerBlockAndItem(blocks, items, "cod_barrel", () -> new FishBarrelBlock(Block.Properties.from(Blocks.BARREL), SoundEvents.ENTITY_COD_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
-        ModBlocks.SALMON_BARREL = registerBlockAndItem(blocks, items, "salmon_barrel", () -> new FishBarrelBlock(Block.Properties.from(Blocks.BARREL), SoundEvents.ENTITY_SALMON_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
-        ModBlocks.TROPICAL_FISH_BARREL = registerBlockAndItem(blocks, items, "tropical_fish_barrel", () -> new FishBarrelBlock(Block.Properties.from(Blocks.BARREL), SoundEvents.ENTITY_TROPICAL_FISH_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
-        ModBlocks.PUFFERFISH_BARREL = registerBlockAndItem(blocks, items, "pufferfish_barrel", () -> new FishBarrelBlock(Block.Properties.from(Blocks.BARREL), SoundEvents.ENTITY_PUFFER_FISH_FLOP, true), block -> new BlockItem(block, ITEM_PROPERTY));
-        ModBlocks.PIKE_BARREL = registerBlockAndItem(blocks, items, "pike_barrel", () -> new FishBarrelBlock(Block.Properties.from(Blocks.BARREL), SoundEvents.ENTITY_SALMON_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
-        ModBlocks.LIONFISH_BARREL = registerBlockAndItem(blocks, items, "lionfish_barrel", () -> new FishBarrelBlock(Block.Properties.from(Blocks.BARREL), SoundEvents.ENTITY_PUFFER_FISH_FLOP, true), block -> new BlockItem(block, ITEM_PROPERTY));
-        ModBlocks.KOI_BARREL = registerBlockAndItem(blocks, items, "koi_barrel", () -> new FishBarrelBlock(Block.Properties.from(Blocks.BARREL), SoundEvents.ENTITY_COD_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
-        ModBlocks.BLOBFISH_BARREL = registerBlockAndItem(blocks, items, "blobfish_barrel", () -> new FishBarrelBlock(Block.Properties.from(Blocks.BARREL), SoundEvents.ENTITY_COD_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
+        ModBlocks.COD_BARREL = registerBlockAndItem(blocks, items, "cod_barrel", () -> new FishBarrelBlock(RANDOMTICK_BLOCK_PROPERTY, SoundEvents.ENTITY_COD_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
+        ModBlocks.SALMON_BARREL = registerBlockAndItem(blocks, items, "salmon_barrel", () -> new FishBarrelBlock(RANDOMTICK_BLOCK_PROPERTY, SoundEvents.ENTITY_SALMON_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
+        ModBlocks.TROPICAL_FISH_BARREL = registerBlockAndItem(blocks, items, "tropical_fish_barrel", () -> new FishBarrelBlock(BLOCK_PROPERTY, SoundEvents.ENTITY_TROPICAL_FISH_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
+        ModBlocks.PUFFERFISH_BARREL = registerBlockAndItem(blocks, items, "pufferfish_barrel", () -> new FishBarrelBlock(BLOCK_PROPERTY, SoundEvents.ENTITY_PUFFER_FISH_FLOP, true), block -> new BlockItem(block, ITEM_PROPERTY));
+        ModBlocks.PIKE_BARREL = registerBlockAndItem(blocks, items, "pike_barrel", () -> new FishBarrelBlock(RANDOMTICK_BLOCK_PROPERTY, SoundEvents.ENTITY_SALMON_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
+        ModBlocks.LIONFISH_BARREL = registerBlockAndItem(blocks, items, "lionfish_barrel", () -> new FishBarrelBlock(BLOCK_PROPERTY, SoundEvents.ENTITY_PUFFER_FISH_FLOP, true), block -> new BlockItem(block, ITEM_PROPERTY));
+        ModBlocks.KOI_BARREL = registerBlockAndItem(blocks, items, "koi_barrel", () -> new FishBarrelBlock(BLOCK_PROPERTY, SoundEvents.ENTITY_COD_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
+        ModBlocks.BLOBFISH_BARREL = registerBlockAndItem(blocks, items, "blobfish_barrel", () -> new FishBarrelBlock(BLOCK_PROPERTY, SoundEvents.ENTITY_COD_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
 
         ModParticles.PARTICLES.register(modEventBus);
     }

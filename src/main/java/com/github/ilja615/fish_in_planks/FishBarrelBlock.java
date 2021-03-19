@@ -1,13 +1,16 @@
 package com.github.ilja615.fish_in_planks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.DirectionalBlock;
+import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
@@ -23,9 +26,11 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -38,6 +43,31 @@ public class FishBarrelBlock extends DirectionalBlock
     private boolean poisonous;
 
     public static final HashMap<Block, IParticleData> BLOCK_I_PARTICLE_DATA_HASH_MAP = new HashMap<>();
+    public static final HashMap<Block, Item> BLOCK_COOKED_FISH_ITEM_HASH_MAP = new HashMap<>();
+
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
+    {
+        if (BLOCK_COOKED_FISH_ITEM_HASH_MAP.containsKey(this) && random.nextFloat() > 0.8f)
+        {
+            Block block = worldIn.getBlockState(pos.down
+                    (
+                            worldIn.getBlockState(pos.down()).getMaterial() == Material.AIR ? 2 : 1
+                    )).getBlock();
+
+            if (block instanceof AbstractFireBlock || block instanceof CampfireBlock)
+            {
+                ItemStack itemStack = new ItemStack(BLOCK_COOKED_FISH_ITEM_HASH_MAP.get(this), 5 + random.nextInt(4));
+                worldIn.removeBlock(pos, false);
+                worldIn.addEntity(new ItemEntity(worldIn, pos.getX()+0.5d, pos.getY()+0.5d, pos.getZ()+0.5d, itemStack));
+                worldIn.addParticle(ParticleTypes.LAVA, pos.getX()+0.5d+r(random), pos.getY(), pos.getZ()+0.5d+r(random), 0.0d, 0.0d, 0.0d);
+                worldIn.addParticle(ParticleTypes.LARGE_SMOKE, pos.getX()+0.5d+r(random), pos.getY(), pos.getZ()+0.5d+r(random), 0.0d, 0.0d, 0.0d);
+                return;
+            }
+        }
+        super.randomTick(state, worldIn, pos, random);
+    }
 
     public FishBarrelBlock(Properties properties, SoundEvent sound, boolean poisonous)
     {
@@ -57,6 +87,11 @@ public class FishBarrelBlock extends DirectionalBlock
         BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.LIONFISH_BARREL.get(), ModParticles.LIONFISH_PARTICLE.get());
         BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.KOI_BARREL.get(), ModParticles.KOI_PARTICLE.get());
         BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.BLOBFISH_BARREL.get(), ModParticles.BLOBFISH_PARTICLE.get());
+
+        BLOCK_COOKED_FISH_ITEM_HASH_MAP.put(ModBlocks.COD_BARREL.get(), Items.COOKED_COD);
+        BLOCK_COOKED_FISH_ITEM_HASH_MAP.put(ModBlocks.SALMON_BARREL.get(), Items.COOKED_SALMON);
+        if (ForgeRegistries.ITEMS.containsKey(new ResourceLocation("upgrade_aquatic:cooked_pike")))
+            BLOCK_COOKED_FISH_ITEM_HASH_MAP.put(ModBlocks.PIKE_BARREL.get(), ForgeRegistries.ITEMS.getValue(new ResourceLocation("upgrade_aquatic:cooked_pike")));
     }
 
     protected static final VoxelShape FISH_BARREL_EAST_AABB = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 15.0D, 16.0D, 16.0D);
@@ -66,17 +101,6 @@ public class FishBarrelBlock extends DirectionalBlock
     protected static final VoxelShape FISH_BARREL_UP_AABB = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
     protected static final VoxelShape FISH_BARREL_DOWN_AABB = Block.makeCuboidShape(0.0D, 1.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
-    //get render shape
-    public VoxelShape func_230335_e_(BlockState p_230335_1_, IBlockReader p_230335_2_, BlockPos p_230335_3_) {
-        return VoxelShapes.fullCube();
-    }
-
-    //get raytrace shape
-    public VoxelShape func_230322_a_(BlockState p_230322_1_, IBlockReader p_230322_2_, BlockPos p_230322_3_, ISelectionContext p_230322_4_) {
-        return VoxelShapes.fullCube();
-    }
-
-    //get collision shape
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
     {
         switch(state.get(FACING)) {
@@ -143,10 +167,13 @@ public class FishBarrelBlock extends DirectionalBlock
     {
         if (worldIn.getBlockState(pos).get(FACING) == Direction.UP)
         {
-            double ySpeed = Math.min(fallDistance / 10.0d, 0.7d);
-            for (int c = 0; c < 2 + worldIn.rand.nextInt(3); c++)
+            if (fallDistance > 3.0f)
             {
-                worldIn.addParticle(BLOCK_I_PARTICLE_DATA_HASH_MAP.getOrDefault(this, ModParticles.COD_PARTICLE.get()), pos.getX()+0.5d+r(worldIn.rand), pos.getY()+1.0d, pos.getZ()+0.5d+r(worldIn.rand), 0.0d, ySpeed, 0.0d);
+                double ySpeed = Math.min(fallDistance / 16.0d, 0.5d);
+                for (int c = 0; c < 2 + worldIn.rand.nextInt(3); c++)
+                {
+                    worldIn.addParticle(BLOCK_I_PARTICLE_DATA_HASH_MAP.getOrDefault(this, ModParticles.COD_PARTICLE.get()), pos.getX() + 0.5d + r(worldIn.rand), pos.getY() + 1.0d, pos.getZ() + 0.5d + r(worldIn.rand), 0.0d, ySpeed, 0.0d);
+                }
             }
             entityIn.onLivingFall(fallDistance, 0.2F);
             if (!worldIn.isRemote )
@@ -182,6 +209,22 @@ public class FishBarrelBlock extends DirectionalBlock
         if (stateIn.get(FACING) == Direction.DOWN && rand.nextFloat() > 0.9f)
         {
             worldIn.addParticle(BLOCK_I_PARTICLE_DATA_HASH_MAP.getOrDefault(this, ModParticles.COD_PARTICLE.get()), pos.getX()+0.5d+r(rand), pos.getY(), pos.getZ()+0.5d+r(rand), 0.0D, -0.1d, 0.0D);
+        }
+        if (BLOCK_COOKED_FISH_ITEM_HASH_MAP.containsKey(this))
+        {
+            Block block = worldIn.getBlockState(pos.down
+                    (
+                            worldIn.getBlockState(pos.down()).getMaterial() == Material.AIR ? 2 : 1
+                    )).getBlock();
+
+            if (block instanceof AbstractFireBlock || block instanceof CampfireBlock)
+            {
+                for (int c = -1; c < worldIn.rand.nextInt(3); c++)
+                {
+                    worldIn.addParticle(ParticleTypes.LAVA, pos.getX()+0.5d+r(rand), pos.getY(), pos.getZ()+0.5d+r(rand), 0.0d, 0.0d, 0.0d);
+                    worldIn.addParticle(ParticleTypes.LARGE_SMOKE, pos.getX()+0.5d+r(rand), pos.getY(), pos.getZ()+0.5d+r(rand), 0.0d, 0.0d, 0.0d);
+                }
+            }
         }
     }
 

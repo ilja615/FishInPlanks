@@ -18,10 +18,10 @@ import java.util.stream.Stream;
 public class FishParticle extends SpriteTexturedParticle
 {
     private int numberBouncesDone = 0;
-    private final int maxBounces;
     private int ageAtGround = 0;
     private double previousMotionY = 0.0d;
     private boolean collidedY;
+    private final float rotSpeed;
 
     protected FishParticle(ClientWorld world, double x, double y, double z, double motionX, double motionY, double motionZ)
     {
@@ -31,14 +31,15 @@ public class FishParticle extends SpriteTexturedParticle
         this.motionZ = motionZ + (Math.random() * 2.0d - 1.0d) * 0.1d;
         this.particleScale += 0.1f;
         this.maxAge = 2000;
-        this.maxBounces = (int)(Math.abs(motionY) * 3.0d);
+        this.rotSpeed = ((float)Math.random() - 0.5F) * 0.1F;
+        this.particleAngle = (float)Math.random() * ((float)Math.PI * 2F);
     }
 
 
     @Override
     public IParticleRenderType getRenderType()
     {
-        return IParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     @Override
@@ -54,6 +55,11 @@ public class FishParticle extends SpriteTexturedParticle
                 this.setExpired();
             }
         } else {
+            this.prevParticleAngle = this.particleAngle;
+            this.particleAngle += (float)Math.PI * this.rotSpeed * 2.0F;
+            if (this.onGround) {
+                this.prevParticleAngle = this.particleAngle = 0.0F;
+            }
             this.motionY -= 0.04;
             this.move(this.motionX, this.motionY, this.motionZ);
         }
@@ -83,7 +89,7 @@ public class FishParticle extends SpriteTexturedParticle
 
             if (Math.abs(d1) >= (double)1.0E-5F && Math.abs(y) < (double)1.0E-5F)
             {
-                if (this.numberBouncesDone > this.maxBounces)
+                if (this.numberBouncesDone > 3 || Math.abs(this.motionY) < 0.2f)
                     this.collidedY = true;
                 else
                 {
@@ -122,7 +128,6 @@ public class FishParticle extends SpriteTexturedParticle
         @Override
         public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             FishParticle fishParticle = new FishParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
-            fishParticle.setColor(1.0f, 1.0f, 1.0f);
             fishParticle.selectSpriteRandomly(this.spriteSet);
             return fishParticle;
         }

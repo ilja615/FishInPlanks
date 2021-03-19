@@ -11,15 +11,15 @@ public class ModParticles
 {
     public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, ModMain.MOD_ID);
 
-    public static RegistryObject<BasicParticleType> COD_PARTICLE = PARTICLES.register("cod_particle", () -> new BasicParticleType(false));
-    public static RegistryObject<BasicParticleType> SALMON_PARTICLE = PARTICLES.register("salmon_particle", () -> new BasicParticleType(false));
-    public static RegistryObject<BasicParticleType> TROPICAL_FISH_PARTICLE = PARTICLES.register("tropical_fish_particle", () -> new BasicParticleType(false));
-    public static RegistryObject<BasicParticleType> PUFFERFISH_PARTICLE = PARTICLES.register("pufferfish_particle", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> COD_PARTICLE = PARTICLES.register("cod_particle", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> SALMON_PARTICLE = PARTICLES.register("salmon_particle", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> TROPICAL_FISH_PARTICLE = PARTICLES.register("tropical_fish_particle", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> PUFFERFISH_PARTICLE = PARTICLES.register("pufferfish_particle", () -> new BasicParticleType(false));
 
-    public static RegistryObject<BasicParticleType> PIKE_PARTICLE = PARTICLES.register("pike_particle", () -> new BasicParticleType(false));
-    public static RegistryObject<BasicParticleType> LIONFISH_PARTICLE = PARTICLES.register("lionfish_particle", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> PIKE_PARTICLE = PARTICLES.register("pike_particle", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> LIONFISH_PARTICLE = PARTICLES.register("lionfish_particle", () -> new BasicParticleType(false));
 
-    public static RegistryObject<BasicParticleType> KOI_PARTICLE = PARTICLES.register("koi_particle", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> KOI_PARTICLE = PARTICLES.register("koi_particle", () -> new BasicParticleType(false));
 
-    public static RegistryObject<BasicParticleType> BLOBFISH_PARTICLE = PARTICLES.register("blobfish_particle", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> BLOBFISH_PARTICLE = PARTICLES.register("blobfish_particle", () -> new BasicParticleType(false));
 }
