@@ -17,6 +17,7 @@ public class ModBlocks
 
     public static RegistryObject<Block> PIKE_BARREL;
     public static RegistryObject<Block> LIONFISH_BARREL;
+    public static RegistryObject<Block> PERCH_BARREL;
 
     public static RegistryObject<Block> KOI_BARREL;
 

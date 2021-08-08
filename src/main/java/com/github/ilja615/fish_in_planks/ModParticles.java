@@ -18,6 +18,7 @@ public class ModParticles
 
     public static final RegistryObject<BasicParticleType> PIKE_PARTICLE = PARTICLES.register("pike_particle", () -> new BasicParticleType(false));
     public static final RegistryObject<BasicParticleType> LIONFISH_PARTICLE = PARTICLES.register("lionfish_particle", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> PERCH_PARTICLE = PARTICLES.register("perch_particle", () -> new BasicParticleType(false));
 
     public static final RegistryObject<BasicParticleType> KOI_PARTICLE = PARTICLES.register("koi_particle", () -> new BasicParticleType(false));
 

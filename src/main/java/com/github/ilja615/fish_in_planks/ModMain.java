@@ -56,6 +56,7 @@ public class ModMain
         ModBlocks.PUFFERFISH_BARREL = registerBlockAndItem(blocks, items, "pufferfish_barrel", () -> new FishBarrelBlock(BLOCK_PROPERTY, SoundEvents.ENTITY_PUFFER_FISH_FLOP, true), block -> new BlockItem(block, ITEM_PROPERTY));
         ModBlocks.PIKE_BARREL = registerBlockAndItem(blocks, items, "pike_barrel", () -> new FishBarrelBlock(RANDOMTICK_BLOCK_PROPERTY, SoundEvents.ENTITY_SALMON_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
         ModBlocks.LIONFISH_BARREL = registerBlockAndItem(blocks, items, "lionfish_barrel", () -> new FishBarrelBlock(BLOCK_PROPERTY, SoundEvents.ENTITY_PUFFER_FISH_FLOP, true), block -> new BlockItem(block, ITEM_PROPERTY));
+        ModBlocks.PERCH_BARREL = registerBlockAndItem(blocks, items, "perch_barrel", () -> new FishBarrelBlock(BLOCK_PROPERTY, SoundEvents.ENTITY_SALMON_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
         ModBlocks.KOI_BARREL = registerBlockAndItem(blocks, items, "koi_barrel", () -> new FishBarrelBlock(BLOCK_PROPERTY, SoundEvents.ENTITY_COD_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
         ModBlocks.BLOBFISH_BARREL = registerBlockAndItem(blocks, items, "blobfish_barrel", () -> new FishBarrelBlock(BLOCK_PROPERTY, SoundEvents.ENTITY_COD_FLOP, false), block -> new BlockItem(block, ITEM_PROPERTY));
 
@@ -73,6 +74,7 @@ public class ModMain
         fireblock.setFireInfo(ModBlocks.PUFFERFISH_BARREL.get(), 5, 5);
         fireblock.setFireInfo(ModBlocks.PIKE_BARREL.get(), 5, 5);
         fireblock.setFireInfo(ModBlocks.LIONFISH_BARREL.get(), 5, 5);
+        fireblock.setFireInfo(ModBlocks.PERCH_BARREL.get(), 5, 5);
         fireblock.setFireInfo(ModBlocks.KOI_BARREL.get(), 5, 5);
         fireblock.setFireInfo(ModBlocks.BLOBFISH_BARREL.get(), 5, 5);
     }
@@ -102,6 +104,7 @@ public class ModMain
             Minecraft.getInstance().particles.registerFactory(ModParticles.PUFFERFISH_PARTICLE.get(), FishParticle.Factory::new);
             Minecraft.getInstance().particles.registerFactory(ModParticles.PIKE_PARTICLE.get(), FishParticle.Factory::new);
             Minecraft.getInstance().particles.registerFactory(ModParticles.LIONFISH_PARTICLE.get(), FishParticle.Factory::new);
+            Minecraft.getInstance().particles.registerFactory(ModParticles.PERCH_PARTICLE.get(), FishParticle.Factory::new);
             Minecraft.getInstance().particles.registerFactory(ModParticles.KOI_PARTICLE.get(), FishParticle.Factory::new);
             Minecraft.getInstance().particles.registerFactory(ModParticles.BLOBFISH_PARTICLE.get(), FishParticle.Factory::new);
         }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "fish_in_planks:perch_barrel"
+    }
+  ],
+  "result": {
+    "item": "upgrade_aquatic:perch",
+    "count": 9
+  }
+}

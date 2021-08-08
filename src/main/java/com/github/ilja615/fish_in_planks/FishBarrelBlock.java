@@ -85,6 +85,7 @@ public class FishBarrelBlock extends DirectionalBlock
         BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.PUFFERFISH_BARREL.get(), ModParticles.PUFFERFISH_PARTICLE.get());
         BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.PIKE_BARREL.get(), ModParticles.PIKE_PARTICLE.get());
         BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.LIONFISH_BARREL.get(), ModParticles.LIONFISH_PARTICLE.get());
+        BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.PERCH_BARREL.get(), ModParticles.PERCH_PARTICLE.get());
         BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.KOI_BARREL.get(), ModParticles.KOI_PARTICLE.get());
         BLOCK_I_PARTICLE_DATA_HASH_MAP.put(ModBlocks.BLOBFISH_BARREL.get(), ModParticles.BLOBFISH_PARTICLE.get());
 
@@ -92,6 +93,10 @@ public class FishBarrelBlock extends DirectionalBlock
         BLOCK_COOKED_FISH_ITEM_HASH_MAP.put(ModBlocks.SALMON_BARREL.get(), Items.COOKED_SALMON);
         if (ForgeRegistries.ITEMS.containsKey(new ResourceLocation("upgrade_aquatic:cooked_pike")))
             BLOCK_COOKED_FISH_ITEM_HASH_MAP.put(ModBlocks.PIKE_BARREL.get(), ForgeRegistries.ITEMS.getValue(new ResourceLocation("upgrade_aquatic:cooked_pike")));
+        if (ForgeRegistries.ITEMS.containsKey(new ResourceLocation("upgrade_aquatic:cooked_lionfish")))
+            BLOCK_COOKED_FISH_ITEM_HASH_MAP.put(ModBlocks.LIONFISH_BARREL.get(), ForgeRegistries.ITEMS.getValue(new ResourceLocation("upgrade_aquatic:cooked_lionfish")));
+        if (ForgeRegistries.ITEMS.containsKey(new ResourceLocation("upgrade_aquatic:cooked_perch")))
+            BLOCK_COOKED_FISH_ITEM_HASH_MAP.put(ModBlocks.PERCH_BARREL.get(), ForgeRegistries.ITEMS.getValue(new ResourceLocation("upgrade_aquatic:cooked_perch")));
     }
 
     protected static final VoxelShape FISH_BARREL_EAST_AABB = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 15.0D, 16.0D, 16.0D);
