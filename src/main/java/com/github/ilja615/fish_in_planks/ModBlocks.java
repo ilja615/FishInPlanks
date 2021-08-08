@@ -1,10 +1,8 @@
 package com.github.ilja615.fish_in_planks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
