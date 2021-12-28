@@ -5,13 +5,13 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.util.RewindableStream;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.stream.Stream;
 
 @OnlyIn(Dist.CLIENT)
@@ -75,7 +75,7 @@ public class FishParticle extends TextureSheetParticle
             double d2 = z;
             if (this.hasPhysics && (x != 0.0D || y != 0.0D || z != 0.0D))
             {
-                Vec3 vector3d = Entity.collideBoundingBoxHeuristically((Entity)null, new Vec3(x, y, z), this.getBoundingBox(), this.level, CollisionContext.empty(), new RewindableStream<>(Stream.empty()));
+                Vec3 vector3d = Entity.collideBoundingBox((Entity)null, new Vec3(x, y, z), this.getBoundingBox(), this.level, List.of());
                 x = vector3d.x;
                 y = vector3d.y;
                 z = vector3d.z;
