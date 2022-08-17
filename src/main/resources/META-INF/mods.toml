@@ -1,10 +1,10 @@
 modLoader="javafml" #mandatory
-loaderVersion="[39,)" #mandatory
+loaderVersion="[41,)" #mandatory
 credits="Idea and textures by edmord, coding by ilja615" #optional
 license="GNU LGPLv3" #mandatory
 [[mods]] #mandatory
 modId="fish_in_planks" #mandatory
-version="1.18.1-0.5" #mandatory
+version="1.19.2-0.5" #mandatory
 displayName="Fish in Planks" #mandatory
 description='''
 Craft 9 of the same fishes to get a fish barrel, a brand new decorative block that can be placed in any of the 6 orientations you like!

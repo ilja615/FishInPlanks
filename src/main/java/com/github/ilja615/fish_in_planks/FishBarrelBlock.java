@@ -57,9 +57,14 @@ public class FishBarrelBlock extends DirectionalBlock
     public static final HashMap<Block, ParticleOptions> BLOCK_I_PARTICLE_DATA_HASH_MAP = new HashMap<>();
     public static final HashMap<Block, Item> BLOCK_COOKED_FISH_ITEM_HASH_MAP = new HashMap<>();
 
+    @Override
+    public boolean isRandomlyTicking(BlockState p_49921_)
+    {
+        return true;
+    }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random)
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
         if (BLOCK_COOKED_FISH_ITEM_HASH_MAP.containsKey(this) && random.nextFloat() > 0.8f)
         {
@@ -222,7 +227,7 @@ public class FishBarrelBlock extends DirectionalBlock
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level level, BlockPos pos, Random rand)
+    public void animateTick(BlockState stateIn, Level level, BlockPos pos, RandomSource rand)
     {
         if (stateIn.getValue(FACING) == Direction.DOWN && rand.nextFloat() > 0.9f)
         {
@@ -246,7 +251,7 @@ public class FishBarrelBlock extends DirectionalBlock
         }
     }
 
-    private static double r(Random random)
+    private static double r(RandomSource random)
     {
         return (random.nextDouble() * 0.5f) - 0.25f;
     }
