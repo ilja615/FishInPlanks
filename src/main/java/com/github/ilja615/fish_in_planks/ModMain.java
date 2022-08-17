@@ -36,11 +36,10 @@ public class ModMain
         INSTANCE = this;
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
         modEventBus.addListener(this::setupCommon);
 
-        ModBlocks.ITEMS.register(forgeEventBus);
-        ModBlocks.BLOCKS.register(forgeEventBus);
+        ModBlocks.ITEMS.register(modEventBus);
+        ModBlocks.BLOCKS.register(modEventBus);
         ModParticles.PARTICLES.register(modEventBus);
     }
 
