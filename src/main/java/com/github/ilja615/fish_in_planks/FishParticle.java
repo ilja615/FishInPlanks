@@ -14,7 +14,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.stream.Stream;
 
-@OnlyIn(Dist.CLIENT)
 public class FishParticle extends TextureSheetParticle
 {
     private int numberBouncesDone = 0;
@@ -115,7 +114,6 @@ public class FishParticle extends TextureSheetParticle
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
     public static class Factory implements ParticleProvider<SimpleParticleType>
     {
         private final SpriteSet spriteSet;

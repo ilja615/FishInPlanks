@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
 
-version = '1.19.2-0.5'
+version = '1.19.2-0.6'
 group = 'com.github.ilja615.fish_in_planks' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'fish_in_planks'
 
